@@ -7,6 +7,8 @@ import java.util.Set;
 // @TODO completar las anotaciones de la clase
 public class Daga {
     // @TODO completar las anotaciones de todos los atributos
+    @Id
+    @Column (name = "TipoD", unique = true, nullable = false)
     private String TipoD;
 
     public Daga(String nombre) {
