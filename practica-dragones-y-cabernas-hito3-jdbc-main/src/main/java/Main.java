@@ -76,22 +76,31 @@ public class Main {
     public static void nuevo_dragon(String nombre, String apariencia, int vida) throws SQLException {
         // @TODO: complete este método para que cree un nuevo dragón en la base de datos
 
-        //Obtenemos Dragon con más vida
-        Statement query = conn.createStatement();
-        ResultSet rs = query.executeQuery("SELECT NombreD FROM dragon WHERE vida = (SELECT Max(vida) from Dragon)");
-        rs.next();
-        // Insert Nuevo Dragon en Tabla Dragon
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO dragon (nombreD, apariencia, vida) VALUES (?, ?, ?)");
-        stmt.setString(1, nombre);
-        stmt.setString(2, apariencia);
-        stmt.setInt(3, vida);
-        stmt.executeUpdate();
-        // Insert para hacer que el Nuevo Dragon sea desbloqueado por el Dragon con mas vida, o sea,
-        // el ultimo que se desbloqueba anteriormente
-        stmt = conn.prepareStatement("INSERT INTO dragon_desbloquea_dragon (nombreD1, nombreD2) VALUES (?, ?)");
-        stmt.setString(1, rs.getString("NombreD"));
-        stmt.setString(2, nombre);
-        stmt.executeUpdate();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            //Obtenemos Dragon con más vida
+            stmt = conn.prepareStatement("SELECT NombreD FROM dragon WHERE vida = (SELECT Max(vida) from Dragon)");
+            rs = stmt.executeQuery();
+            rs.next();
+            // Insert Nuevo Dragon en Tabla Dragon
+            stmt = conn.prepareStatement("INSERT INTO dragon (nombreD, apariencia, vida) VALUES (?,?,?)");
+            stmt.setString(1, nombre);
+            stmt.setString(2, apariencia);
+            stmt.setInt(3, vida);
+            stmt.executeUpdate();
+            // Insert para hacer que el Nuevo Dragon sea desbloqueado por el Dragon con mas vida, o sea,
+            // el ultimo que se desbloqueba anteriormente
+            stmt = conn.prepareStatement("INSERT INTO dragon_desbloquea_dragon (nombreD1, nombreD2) VALUES (?, ?)");
+            stmt.setString(1, rs.getString("NombreD"));
+            stmt.setString(2, nombre);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("No se ha podido insertar el dragon " + nombre + " en la base de datos");
+
+        }
+
+
     }
 
     public static List<Dragon> squad_derrota_dragones(int id_squad) throws SQLException {
@@ -100,14 +109,20 @@ public class Main {
         // ir iterando y creando un objeto dragon para cada uno de los dragones, y añadirlos a la lista
 
         List<Dragon> lista = new ArrayList<Dragon>();
-        Statement query = conn.createStatement();
-        ResultSet rs = query.executeQuery("SELECT * FROM dragon WHERE NombreD IN (" +
-                "SELECT NombreD FROM escuadron_derrota_dragon WHERE IdE = " + id_squad + ")");
-        while (rs.next()) {
-            Dragon dragon = new Dragon(rs.getString("NombreD"),
-                    rs.getInt("Vida"),
-                    rs.getString("Apariencia"));
-            lista.add(dragon);
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM dragon WHERE NombreD IN (" +
+                    "SELECT NombreD FROM escuadron_derrota_dragon WHERE IdE = " + id_squad + ")");
+            while (rs.next()) {
+                Dragon dragon = new Dragon(rs.getString("NombreD"),
+                        rs.getInt("Vida"),
+                        rs.getString("Apariencia"));
+                lista.add(dragon);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se ha podido obtener una lista de dragones derrotados por el escuadron " + id_squad);
         }
         return lista;
     }
@@ -119,15 +134,21 @@ public class Main {
         // ir iterando y creando un objeto con cada hacha disponible en esa forja, y añadirlos a la lista
 
         List<Arma> lista = new ArrayList<Arma>();
-        Statement query = conn.createStatement();
-        ResultSet rs = query.executeQuery("SELECT * FROM arma WHERE Clase = 'Tanque' and NombreA IN (" +
-                "SELECT NombreA FROM forja_crea_arma WHERE NombreF = '" + nombre_forja + "')");
-        while (rs.next()) {
-            Arma arma = new Arma(rs.getString("NombreA"),
-                    rs.getInt("Daño"),
-                    rs.getInt("Peso"),
-                    rs.getString("Clase"));
-            lista.add(arma);
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM arma WHERE Clase = 'Tanque' and NombreA IN (" +
+                    "SELECT NombreA FROM forja_crea_arma WHERE NombreF = '" + nombre_forja + "')");
+            while (rs.next()) {
+                Arma arma = new Arma(rs.getString("NombreA"),
+                        rs.getInt("Daño"),
+                        rs.getInt("Peso"),
+                        rs.getString("Clase"));
+                lista.add(arma);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se ha podido obtener una lista de hachas forjadas en la " + nombre_forja);
         }
         return lista;
     }
@@ -137,10 +158,16 @@ public class Main {
         // @TODO: complete este método para que devuelva el nombre de la espada que porta el guerrero "nombre_guerrero"
 
         List<Arma> lista = new ArrayList<Arma>();
-        Statement query = conn.createStatement();
-        ResultSet rs = query.executeQuery("SELECT NombreA FROM personaje_compra_arma " +
-                "WHERE NombreP = '" + nombre_guerrero + "' AND Carga = true");
-        rs.next();
+        Statement query = null;
+        ResultSet rs = null;
+        try {
+            query = conn.createStatement();
+            rs = query.executeQuery("SELECT NombreA FROM personaje_compra_arma " +
+                    "WHERE NombreP = '" + nombre_guerrero + "' AND Carga = true");
+            rs.next();
+        } catch (SQLException e) {
+            System.out.println("No se ha podido obetener la espada que porta el guerrero " + nombre_guerrero);
+        }
         return rs.getString("NombreA");
     }
 

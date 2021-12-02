@@ -7,10 +7,14 @@ import java.util.Set;
 // @TODO completar las anotaciones de la clase
 public class Daga {
     // @TODO completar las anotaciones de todos los atributos
+    private String TipoD;
 
-    public Daga(String nombre){
+    public Daga(String nombre) {
         // @TODO completar el constructor de la clase.
+        this.TipoD = nombre;
     }
 
-    public String getnombre(){ return this.name;}
+    public String getnombre() {
+        return this.TipoD;
+    }
 }
