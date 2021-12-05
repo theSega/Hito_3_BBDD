@@ -18,7 +18,7 @@ public class Rol {
     private Clase Clase;
 
     //1-N con Personaje
-    @OneToMany(mappedBy = "Clase")
+    @OneToMany(mappedBy = "ClaseP")
     private Set<Personaje> personaje;
 
 

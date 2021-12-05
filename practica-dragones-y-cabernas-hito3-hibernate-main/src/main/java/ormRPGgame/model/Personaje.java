@@ -40,8 +40,8 @@ public class Personaje {
 
     //1-N con Rol
     @ManyToOne(optional = false)
-    @JoinColumn(name = "Clase")
-    private Rol Clase;
+    @JoinColumn(name = "ClaseP")
+    private Rol ClaseP;
 
 
     public Personaje(String nombre, long Oro, long Nivel, Daga daga, Jugador jugador, Rol Clase) {
@@ -73,7 +73,7 @@ public class Personaje {
             this.Vida = 0;
         }
         this.IdJ = jugador;
-        this.Clase = Clase;
+        this.ClaseP = Clase;
     }
 
     public String getnombre() {
@@ -109,7 +109,7 @@ public class Personaje {
     }
 
     public String getRol() {
-        return Clase.getRol();
+        return ClaseP.getRol();
     }
 
 }

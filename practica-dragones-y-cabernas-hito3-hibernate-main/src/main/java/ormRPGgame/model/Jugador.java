@@ -15,6 +15,7 @@ public class Jugador {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IdJ")
     private long IdJ;
+
     //1-N con Personaje
     @OneToMany(mappedBy = "IdJ")
     private Set<Personaje> personaje;
@@ -26,4 +27,5 @@ public class Jugador {
     public long getId() {
         return IdJ;
     }
+
 }
