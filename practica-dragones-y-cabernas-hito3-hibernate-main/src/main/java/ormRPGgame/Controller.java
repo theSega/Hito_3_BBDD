@@ -1,6 +1,6 @@
 package ormRPGgame;
 
-import ormRPGgame.model.Mago;
+import ormRPGgame.model.Personaje;
 import ormRPGgame.model.Daga;
 
 import org.hibernate.Session;
@@ -42,14 +42,16 @@ public class Controller {
      * @return el nuevo usuario creado
      * @throws SQLException
      */
-
+/*
     public Daga createDaga(String nombre) throws SQLException{
         // @TODO complete este metodo para crear de forma presistente una daga
 
     }
 
-    public Mago createMago(String magician, Daga daga) throws SQLException {
+    public Personaje createMago(String magician, Daga daga) throws SQLException {
         // @TODO complete este metodo para crear de forma presistente un mago
 
     }
+
+ */
 }

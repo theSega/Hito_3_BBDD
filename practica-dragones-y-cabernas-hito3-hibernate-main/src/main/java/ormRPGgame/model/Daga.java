@@ -4,15 +4,19 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-// @TODO completar las anotaciones de la clase
+@Entity
+@Table(name = "Daga")
 public class Daga {
-    // @TODO completar las anotaciones de todos los atributos
+
     @Id
-    @Column (name = "TipoD", unique = true, nullable = false)
+    @Column(name = "TipoD", unique = true, nullable = false, length = 25)
     private String TipoD;
 
+    //1-N con Personaje
+    @OneToMany(mappedBy = "TipoD")
+    private Set<Personaje> personaje;
+
     public Daga(String nombre) {
-        // @TODO completar el constructor de la clase.
         this.TipoD = nombre;
     }
 

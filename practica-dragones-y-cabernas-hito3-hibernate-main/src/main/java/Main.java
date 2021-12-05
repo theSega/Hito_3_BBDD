@@ -1,5 +1,5 @@
 import ormRPGgame.Controller;
-import ormRPGgame.model.Mago;
+import ormRPGgame.model.Personaje;
 import ormRPGgame.model.Daga;
 
 import java.sql.SQLException;

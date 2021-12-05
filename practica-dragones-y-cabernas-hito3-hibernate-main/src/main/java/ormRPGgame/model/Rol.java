@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Rol")
@@ -11,14 +12,19 @@ public class Rol {
     }
 
     @Id
-    @Column(name = "clase")
+    @Column(name = "Clase")
     @Enumerated(EnumType.STRING)
-    private Clase clase;
+    @OneToMany(mappedBy = "Clase")
+    private Clase Clase;
+
+    //1-N con Personaje
+    @OneToMany(mappedBy = "Clase")
+    private Set<Personaje> personaje;
 
 
     public Rol(String clase) throws IllegalArgumentException {
         try {
-            this.clase = Clase.valueOf(clase);
+            this.Clase = Clase.valueOf(clase);
         } catch (IllegalArgumentException e) {
             System.out.println("Ese rol no es valido, solo valen: ");
             System.out.println(" Guerrero\nTanque\nMago");
@@ -26,7 +32,7 @@ public class Rol {
     }
 
     public String getRol() {
-        return this.clase.toString();
+        return this.Clase.toString();
     }
 
 
