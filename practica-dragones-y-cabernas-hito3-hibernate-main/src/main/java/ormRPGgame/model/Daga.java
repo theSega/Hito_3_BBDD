@@ -20,7 +20,7 @@ public class Daga {
         this.TipoD = nombre;
     }
 
-    public String getnombre() {
+    public String getNombre() {
         return this.TipoD;
     }
 }

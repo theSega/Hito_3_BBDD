@@ -10,6 +10,7 @@ import java.util.Set;
 @Table(name = "Personaje")
 public class Personaje {
 
+    @Id
     @Column(name = "NombreP", nullable = false, length = 15)
     private String NombreP;
 
@@ -28,23 +29,34 @@ public class Personaje {
     @Column(name = "Vida", nullable = false)
     private long Vida;
 
-    //1-N con Daga
+    // 1-N con Daga
     @ManyToOne(optional = false)
     @JoinColumn(name = "TipoD")
     private Daga TipoD;
 
-    //1-N con Jugador
+    // 1-N con Jugador
     @ManyToOne(optional = false)
     @JoinColumn(name = "IdJ")
     private Jugador IdJ;
 
-    //1-N con Rol
+    // 1-N con Rol
     @ManyToOne(optional = false)
     @JoinColumn(name = "ClaseP")
     private Rol ClaseP;
 
+    // N-M con Escuadron
+    @ManyToMany(mappedBy = "PersonajesMiembros")
+    private Set<Escuadron> escuadron;
 
-    public Personaje(String nombre, long Oro, long Nivel, Daga daga, Jugador jugador, Rol Clase) {
+    // N-M con Monstruo
+    @ManyToMany()
+    @JoinTable(name = "Personaje_Derrota_Monstruo")
+    private Set<Monstruo> MonstruosDerrotados;
+
+    public Personaje() {
+    }
+
+    public Personaje(String nombre, Rol Clase, long Oro, long Nivel, Daga daga, Jugador jugador) {
         // @TODO completar el constructor de la clase.
         //  Para ello es necesario un string con el nombre del mago y un objeto de la clase daga
         //  Inicialice el resto de atributos a los valores que considere oportunos
@@ -76,7 +88,7 @@ public class Personaje {
         this.ClaseP = Clase;
     }
 
-    public String getnombre() {
+    public String getNombre() {
         return this.NombreP;
     }
 

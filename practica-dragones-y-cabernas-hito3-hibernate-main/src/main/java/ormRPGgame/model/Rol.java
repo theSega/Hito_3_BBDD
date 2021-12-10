@@ -17,10 +17,20 @@ public class Rol {
     @OneToMany(mappedBy = "Clase")
     private Clase Clase;
 
-    //1-N con Personaje
+    // 1-N con Personaje
     @OneToMany(mappedBy = "ClaseP")
     private Set<Personaje> personaje;
 
+    // 1-N con Monstruo
+    @OneToMany(mappedBy = "ClaseM")
+    private Set<Monstruo> monstruo;
+
+    // 1-N con Habilidades
+    @OneToMany(mappedBy = "ClaseH")
+    private Set<Habilidades> habilidades;
+
+    public Rol() {
+    }
 
     public Rol(String clase) throws IllegalArgumentException {
         try {
