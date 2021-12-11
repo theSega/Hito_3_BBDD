@@ -48,17 +48,37 @@ public class Controller {
 
     public Daga createDaga(String nombre) throws SQLException {
         // @TODO complete este metodo para crear de forma presistente una daga
+        session.beginTransaction();
         Daga daga = new Daga(nombre);
+        session.save(daga);
+        session.getTransaction().commit();
         return daga;
     }
 
-    public Personaje createMago(String magician, Daga daga, Jugador jugador) throws SQLException {
+    public Personaje createMago(String magician, Daga daga, Jugador jugador, long oro, long nivel) throws SQLException {
         // @TODO complete este metodo para crear de forma presistente un mago
-        Rol clase = new Rol("Mago");
-        Personaje mago = new Personaje(magician, clase, 0, 1, daga, jugador);
+        session.beginTransaction();
+        Rol clase = createRol("Mago");
+        Personaje mago = new Personaje(magician, clase, oro, nivel, daga, jugador);
+        session.save(mago);
+        session.getTransaction().commit();
         return mago;
     }
 
-    public  Jugador createJugador(String nombre)
+    public Jugador createJugador(String nombre){
+        session.beginTransaction();
+        Jugador jugador = new Jugador(nombre);
+        session.save(jugador);
+        session.getTransaction().commit();
+        return jugador;
+    }
+
+    public Rol createRol(String clase){
+        session.beginTransaction();
+        Rol rol = new Rol(clase);
+        session.save(rol);
+        session.getTransaction().commit();
+        return rol;
+    }
 
 }

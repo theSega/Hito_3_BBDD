@@ -20,6 +20,13 @@ public class Jugador {
     @OneToMany(mappedBy = "IdJ")
     private Set<Personaje> personaje;
 
+    public Jugador() {
+    }
+
+    public Jugador(String Nombre) {
+        this.NombreJ = Nombre;
+    }
+
     public String getNombre() {
         return NombreJ;
     }

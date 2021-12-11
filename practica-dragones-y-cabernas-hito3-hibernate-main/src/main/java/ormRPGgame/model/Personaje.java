@@ -71,19 +71,20 @@ public class Personaje {
         else
             this.Fuerza = 80 + (Nivel / 2) - 1;
         //Mana y Vida
-        if (Clase.equals("Mago")) {
-            this.Mana = 300 * Nivel;
-            this.Vida = 300 * Nivel;
-        } else if (Clase.equals("Guerrero")) {
-            this.Mana = 200 * Nivel;
-            this.Vida = 500 * Nivel;
-        } else if (Clase.equals("Tanque")) {
-            this.Mana = 100 * Nivel;
-            this.Vida = 700 * Nivel;
+        if (Clase.getRol().equals("Mago")) {
+            this.Mana = 300L * Nivel;
+            this.Vida = 300L * Nivel;
+        } else if (Clase.getRol().equals("Guerrero")) {
+            this.Mana = 200L * Nivel;
+            this.Vida = 500L * Nivel;
+        } else if (Clase.getRol().equals("Tanque")) {
+            this.Mana = 100L * Nivel;
+            this.Vida = 700L * Nivel;
         } else {
             this.Mana = 0;
             this.Vida = 0;
         }
+        this.TipoD = daga;
         this.IdJ = jugador;
         this.ClaseP = Clase;
     }
@@ -113,7 +114,7 @@ public class Personaje {
     }
 
     public String getDaga() {
-        return TipoD.getnombre();
+        return TipoD.getNombre();
     }
 
     public long getId() {

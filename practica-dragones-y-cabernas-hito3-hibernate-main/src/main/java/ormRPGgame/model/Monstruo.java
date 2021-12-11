@@ -1,12 +1,15 @@
 package ormRPGgame.model;
 
+import com.sun.xml.internal.ws.developer.Serialization;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "Monstruo")
-public class Monstruo {
+public class Monstruo implements Serializable {
 
     private enum CodM {
         Goblin, Troll, Espectro

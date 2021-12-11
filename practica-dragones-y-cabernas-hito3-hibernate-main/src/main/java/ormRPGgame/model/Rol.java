@@ -14,7 +14,6 @@ public class Rol {
     @Id
     @Column(name = "Clase")
     @Enumerated(EnumType.STRING)
-    @OneToMany(mappedBy = "Clase")
     private Clase Clase;
 
     // 1-N con Personaje
