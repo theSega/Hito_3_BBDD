@@ -23,4 +23,9 @@ public class Daga {
     public String getNombre() {
         return this.TipoD;
     }
+
+    public Set<Personaje> getPersonajes() {
+        return personaje;
+    }
+
 }

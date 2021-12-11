@@ -125,4 +125,11 @@ public class Personaje {
         return ClaseP.getRol();
     }
 
+    public Set<Escuadron> getEscuadrones() {
+        return escuadron;
+    }
+
+    public Set<Monstruo> getMonstruosDerrotados() {
+        return MonstruosDerrotados;
+    }
 }

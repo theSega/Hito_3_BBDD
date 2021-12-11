@@ -33,6 +33,13 @@ public class Escuadron {
         return IdE;
     }
 
+    public Set<Personaje> getMiembros() {
+        return PersonajesMiembros;
+    }
+
+    public Set<Dragon> getDragonesDerrotados() {
+        return DragonesDerrotados;
+    }
 
 
 }

@@ -18,7 +18,7 @@ public class Jugador {
 
     //1-N con Personaje
     @OneToMany(mappedBy = "IdJ")
-    private Set<Personaje> personaje;
+    private Set<Personaje> personajes;
 
     public Jugador() {
     }
@@ -33,6 +33,10 @@ public class Jugador {
 
     public long getId() {
         return IdJ;
+    }
+
+    public Set<Personaje> getPersonajes() {
+        return personajes;
     }
 
 }

@@ -40,7 +40,13 @@ public class Monstruo implements Serializable {
     private Set<Personaje> personajes;
 
     public Monstruo() {
+    }
 
+    public Monstruo(String Nombre, long Vida, long Oro, Rol clase) {
+        this.NombreM = Nombre;
+        this.Vida = Vida;
+        this.Oro = Oro;
+        this.ClaseM = clase;
     }
 
     public String getCodigo() {
@@ -61,5 +67,9 @@ public class Monstruo implements Serializable {
 
     public String getRol() {
         return ClaseM.toString();
+    }
+
+    public Set<Personaje> getPersonajes() {
+        return personajes;
     }
 }

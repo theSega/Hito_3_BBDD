@@ -28,6 +28,10 @@ public class Rol {
     @OneToMany(mappedBy = "ClaseH")
     private Set<Habilidades> habilidades;
 
+    // 1-N con Arma
+    @OneToMany(mappedBy = "ClaseA")
+    private Set<Arma> armas;
+
     public Rol() {
     }
 
@@ -44,5 +48,20 @@ public class Rol {
         return this.Clase.toString();
     }
 
+    public Set<Personaje> getPersonajes() {
+        return personaje;
+    }
+
+    public Set<Monstruo> getMonstruos() {
+        return monstruo;
+    }
+
+    public Set<Habilidades> getHabilidades() {
+        return habilidades;
+    }
+
+    public Set<Arma> getArmas() {
+        return armas;
+    }
 
 }

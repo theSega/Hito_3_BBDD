@@ -26,8 +26,13 @@ public class Dragon {
     @JoinTable(name = "Dragon_Desbloquea_Dragon")
     private Set<Dragon> DesbloqueaDragones;
 
-    public Dragon(){
+    public Dragon() {
+    }
 
+    public Dragon(String Nombre, String Apariencia, long Vida) {
+        this.NombreD = Nombre;
+        this.Apariencia = Apariencia;
+        this.Vida = Vida;
     }
 
     public String getNombre() {
@@ -42,5 +47,11 @@ public class Dragon {
         return Vida;
     }
 
+    public Set<Escuadron> getEscuadrones() {
+        return escuadrones;
+    }
 
+    public Set<Dragon> getDragonesDesbloqueables() {
+        return DesbloqueaDragones;
+    }
 }
