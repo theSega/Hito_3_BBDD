@@ -42,7 +42,14 @@ public class Monstruo implements Serializable {
     public Monstruo() {
     }
 
-    public Monstruo(String Nombre, long Vida, long Oro, Rol clase) {
+    public Monstruo(String tipoMonstruo, String Nombre, long Vida, long Oro, Rol clase) {
+        try {
+            this.CodM = CodM.valueOf(tipoMonstruo);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ese monstruo no es valido, solo valen: ");
+            System.out.println(CodM.toString());
+        }
+
         this.NombreM = Nombre;
         this.Vida = Vida;
         this.Oro = Oro;

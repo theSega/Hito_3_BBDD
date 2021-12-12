@@ -32,7 +32,11 @@ public class Arma {
 
     public Arma(String NombreA, Rol Clase, long Daño, long Peso) {
         this.NombreA = NombreA;
+        if (Daño < 20)
+            Daño = 20;
         this.Daño = Daño;
+        if (Peso < 10)
+            Peso = 10;
         this.Peso = Peso;
         this.ClaseA = Clase;
     }
@@ -49,7 +53,7 @@ public class Arma {
         return this.NombreA;
     }
 
-    public String getRol(){
+    public String getRol() {
         return this.ClaseA.getRol();
     }
 
