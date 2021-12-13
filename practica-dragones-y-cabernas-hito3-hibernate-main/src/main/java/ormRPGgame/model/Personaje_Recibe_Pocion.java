@@ -10,6 +10,9 @@ import javax.persistence.Table;
 public class Personaje_Recibe_Pocion {
 
     @Id
-    @Column(name="placeholder")
+    @Column(name = "placeholder")
     private long Placeholder;
+
+    public Personaje_Recibe_Pocion() {
+    }
 }
