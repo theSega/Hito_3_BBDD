@@ -25,8 +25,15 @@ public class Personaje_Compra_Arma implements Serializable {
     @JoinColumn(name = "Personaje_Tiene_Arma")
     private Personaje Dueño;
 
-    public Personaje_Compra_Arma(){
+    public Personaje_Compra_Arma() {
 
+    }
+
+    public Personaje_Compra_Arma(Arma arma, Boolean Carga, Date Fecha, Personaje Dueño) {
+        this.arma = arma;
+        this.Carga = Carga;
+        this.Fecha = Fecha;
+        this.Dueño = Dueño;
     }
 
     public Arma getArma() {

@@ -14,7 +14,6 @@ public class Pocion {
     @Column(name = "RecVida")
     private long RecVida;
 
-
     @Column(name = "RecMana")
     private long RecMana;
 
