@@ -65,7 +65,7 @@ public class Controller {
         return mago;
     }
 
-    public Jugador createJugador(String nombre){
+    public Jugador createJugador(String nombre) {
         session.beginTransaction();
         Jugador jugador = new Jugador(nombre);
         session.save(jugador);
@@ -73,7 +73,7 @@ public class Controller {
         return jugador;
     }
 
-    public Rol createRol(String clase){
+    public Rol createRol(String clase) {
         session.beginTransaction();
         Rol rol = new Rol(clase);
         session.save(rol);

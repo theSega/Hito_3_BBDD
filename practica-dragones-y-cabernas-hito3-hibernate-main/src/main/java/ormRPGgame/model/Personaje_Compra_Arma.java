@@ -1,9 +1,6 @@
 package ormRPGgame.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,7 +8,7 @@ import java.util.Set;
 @Table(name = "Personaje_Compra_Arma")
 public class Personaje_Compra_Arma {
 
-
+    @Id
     @ManyToMany(mappedBy = "Dueños")
     private Set<Arma> Armas;
 
