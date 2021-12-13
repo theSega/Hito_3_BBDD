@@ -53,6 +53,10 @@ public class Personaje {
     @JoinTable(name = "Personaje_Derrota_Monstruo")
     private Set<Monstruo> MonstruosDerrotados;
 
+    // 1-N con Personaje_Compra_Arma
+    @OneToMany(mappedBy = "Dueño")
+    private Set<Personaje_Compra_Arma> MisArmas;
+
     public Personaje() {
     }
 
@@ -131,5 +135,9 @@ public class Personaje {
 
     public Set<Monstruo> getMonstruosDerrotados() {
         return MonstruosDerrotados;
+    }
+
+    public Set<Personaje_Compra_Arma> getMisArmas() {
+        return MisArmas;
     }
 }

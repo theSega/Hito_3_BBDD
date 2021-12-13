@@ -66,8 +66,8 @@ public class Controller {
     }
 
     public Jugador createJugador(String nombre) {
-        session.beginTransaction();
         Jugador jugador = new Jugador(nombre);
+        session.beginTransaction();
         session.save(jugador);
         session.getTransaction().commit();
         return jugador;

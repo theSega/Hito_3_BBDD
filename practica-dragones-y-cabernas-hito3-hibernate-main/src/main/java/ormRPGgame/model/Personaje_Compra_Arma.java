@@ -1,31 +1,36 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "Personaje_Compra_Arma")
-public class Personaje_Compra_Arma {
+public class Personaje_Compra_Arma implements Serializable {
 
+    // 1-N con Arma
     @Id
-    @ManyToMany(mappedBy = "Dueños")
-    private Set<Arma> Armas;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Arma_es_Tenida")
+    private Arma arma;
 
     @Column(name = "Carga", nullable = false)
     private boolean Carga;
     @Column(name = "Fecha", nullable = false)
     private Date Fecha;
 
-    @ManyToMany()
-    private Set<Personaje> Dueños;
+    // 1-N con Personaje
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Personaje_Tiene_Arma")
+    private Personaje Dueño;
 
     public Personaje_Compra_Arma(){
 
     }
 
-    public Set<Arma> getArmas() {
-        return Armas;
+    public Arma getArma() {
+        return arma;
     }
 
     public boolean getCarga() {
@@ -36,8 +41,8 @@ public class Personaje_Compra_Arma {
         return Fecha;
     }
 
-    public Set<Personaje> getDueños() {
-        return Dueños;
+    public Personaje getDueño() {
+        return Dueño;
     }
 
 }

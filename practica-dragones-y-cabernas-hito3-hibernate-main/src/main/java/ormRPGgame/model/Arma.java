@@ -27,6 +27,10 @@ public class Arma {
     @ManyToMany(mappedBy = "ArmasCreadas")
     private Set<Forja> forja;
 
+    // 1-N con Personaje_Compra_Arma
+    @OneToMany(mappedBy = "arma")
+    private Set<Personaje_Compra_Arma> Compra;
+
     public Arma() {
     }
 
@@ -55,6 +59,10 @@ public class Arma {
 
     public String getRol() {
         return this.ClaseA.getRol();
+    }
+
+    public Set<Personaje_Compra_Arma> getCompra() {
+        return Compra;
     }
 
 
