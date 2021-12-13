@@ -57,8 +57,9 @@ public class Controller {
 
     public Personaje createMago(String magician, Daga daga, Jugador jugador, long oro, long nivel) throws SQLException {
         // @TODO complete este metodo para crear de forma presistente un mago
-        session.beginTransaction();
+
         Rol clase = createRol("Mago");
+        session.beginTransaction();
         Personaje mago = new Personaje(magician, clase, oro, nivel, daga, jugador);
         session.save(mago);
         session.getTransaction().commit();
