@@ -54,8 +54,12 @@ public class Personaje {
     private Set<Monstruo> MonstruosDerrotados;
 
     // 1-N con Personaje_Compra_Arma
-    @OneToMany(mappedBy = "Dueño")
+    @OneToMany(mappedBy = "DueñoA")
     private Set<Personaje_Compra_Arma> MisArmas;
+
+    // 1-N con Personaje_Recibe_Pocion
+    @OneToMany(mappedBy = "DueñoP")
+    private Set<Personaje_Recibe_Pocion> MisPociones;
 
     public Personaje() {
     }
@@ -139,5 +143,9 @@ public class Personaje {
 
     public Set<Personaje_Compra_Arma> getMisArmas() {
         return MisArmas;
+    }
+
+    public Set<Personaje_Recibe_Pocion> getMisPociones() {
+        return MisPociones;
     }
 }

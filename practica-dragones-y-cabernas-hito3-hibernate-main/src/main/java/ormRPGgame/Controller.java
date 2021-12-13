@@ -11,6 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ormRPGgame.model.Rol;
 
+import javax.management.relation.Role;
 import java.sql.*;
 
 
@@ -74,10 +75,14 @@ public class Controller {
     }
 
     public Rol createRol(String clase) {
-        session.beginTransaction();
-        Rol rol = new Rol(clase);
-        session.save(rol);
-        session.getTransaction().commit();
+        Rol rol = new Rol();
+        rol = session.get(Rol.class, rol.getClase(clase));
+        if (rol == null) {
+            rol = new Rol(clase);
+            session.beginTransaction();
+            session.save(rol);
+            session.getTransaction().commit();
+        }
         return rol;
     }
 

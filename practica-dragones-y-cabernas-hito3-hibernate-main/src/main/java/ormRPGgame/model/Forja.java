@@ -22,6 +22,8 @@ public class Forja {
     @JoinTable(name = "Forja_crea_arma")
     private Set<Arma> ArmasCreadas;
 
+
+
     public Forja() {
     }
 

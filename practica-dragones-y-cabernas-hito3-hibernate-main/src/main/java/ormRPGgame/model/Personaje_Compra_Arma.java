@@ -12,18 +12,20 @@ public class Personaje_Compra_Arma implements Serializable {
     // 1-N con Arma
     @Id
     @ManyToOne(optional = false)
-    @JoinColumn(name = "Arma_es_Tenida")
+    @JoinColumn(name = "arma")
     private Arma arma;
 
     @Column(name = "Carga", nullable = false)
     private boolean Carga;
+
     @Column(name = "Fecha", nullable = false)
     private Date Fecha;
 
     // 1-N con Personaje
+    @Id
     @ManyToOne(optional = false)
-    @JoinColumn(name = "Personaje_Tiene_Arma")
-    private Personaje Dueño;
+    @JoinColumn(name = "DueñoA")
+    private Personaje DueñoA;
 
     public Personaje_Compra_Arma() {
 
@@ -33,7 +35,7 @@ public class Personaje_Compra_Arma implements Serializable {
         this.arma = arma;
         this.Carga = Carga;
         this.Fecha = Fecha;
-        this.Dueño = Dueño;
+        this.DueñoA = Dueño;
     }
 
     public Arma getArma() {
@@ -49,7 +51,7 @@ public class Personaje_Compra_Arma implements Serializable {
     }
 
     public Personaje getDueño() {
-        return Dueño;
+        return DueñoA;
     }
 
 }

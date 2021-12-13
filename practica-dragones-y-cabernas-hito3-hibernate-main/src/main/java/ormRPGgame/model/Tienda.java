@@ -13,8 +13,13 @@ public class Tienda {
 
     // N-M con Daga
     @ManyToMany()
-    @JoinTable(name="Tienda_Vende_Daga")
+    @JoinTable(name = "Tienda_Vende_Daga")
     private Set<Daga> DagasVendidas;
+
+
+    // N-M con Ciudad
+    @ManyToMany(mappedBy = "MisTiendas")
+    private Set<Ciudad> Ciudades;
 
     public Tienda() {
     }
@@ -31,5 +36,8 @@ public class Tienda {
         return DagasVendidas;
     }
 
+    public Set<Ciudad> getCiudades() {
+        return Ciudades;
+    }
 
 }

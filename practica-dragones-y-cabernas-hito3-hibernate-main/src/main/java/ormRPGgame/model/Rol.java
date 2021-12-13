@@ -7,14 +7,14 @@ import java.util.Set;
 @Table(name = "Rol")
 public class Rol {
 
-    private enum Clase {
+    private enum Clases {
         Guerrero, Mago, Tanque
     }
 
     @Id
     @Column(name = "Clase")
     @Enumerated(EnumType.STRING)
-    private Clase Clase;
+    private Clases Clase;
 
     // 1-N con Personaje
     @OneToMany(mappedBy = "ClaseP")
@@ -37,7 +37,7 @@ public class Rol {
 
     public Rol(String clase) throws IllegalArgumentException {
         try {
-            this.Clase = Clase.valueOf(clase);
+            this.Clase = Clases.valueOf(clase);
         } catch (IllegalArgumentException e) {
             System.out.println("Ese rol no es valido, solo valen: ");
             System.out.println(" Guerrero\nTanque\nMago");
@@ -46,6 +46,14 @@ public class Rol {
 
     public String getRol() {
         return this.Clase.toString();
+    }
+
+    public Clases getClase(String clase) throws IllegalArgumentException {
+        try {
+            return Clases.valueOf(clase);
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
     }
 
     public Set<Personaje> getPersonajes() {

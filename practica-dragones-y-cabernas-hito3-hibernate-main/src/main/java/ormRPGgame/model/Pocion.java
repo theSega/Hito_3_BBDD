@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="Pocion")
@@ -16,6 +17,10 @@ public class Pocion {
 
     @Column(name = "RecMana")
     private long RecMana;
+
+    // 1-N con Personaje_Recibe_Pocion
+    @OneToMany(mappedBy = "pocion")
+    private Set<Personaje_Recibe_Pocion> pociones;
 
     public Pocion(){
     }
@@ -35,6 +40,10 @@ public class Pocion {
 
     public long getRecMana() {
         return RecMana;
+    }
+
+    public Set<Personaje_Recibe_Pocion> getPocion() {
+        return pociones;
     }
 
 }
