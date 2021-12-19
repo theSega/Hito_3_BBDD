@@ -1,10 +1,11 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="Pocion")
+@Table(name = "Pocion")
 public class Pocion {
 
     @Id
@@ -22,12 +23,13 @@ public class Pocion {
     @OneToMany(mappedBy = "pocion")
     private Set<Personaje_Recibe_Pocion> pociones;
 
-    public Pocion(){
+    public Pocion() {
     }
 
-    public Pocion(long RecVida, long RecMana){
+    public Pocion(long RecVida, long RecMana) {
         this.RecVida = RecVida;
         this.RecMana = RecMana;
+        pociones = new HashSet<>();
     }
 
     public long getCodigo() {

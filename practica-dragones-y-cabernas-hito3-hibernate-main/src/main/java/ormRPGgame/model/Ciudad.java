@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ public class Ciudad {
 
     // N-M con Tienda
     @ManyToMany()
-    @JoinTable(name="Tienda_Se_Ubica_Ciudad")
+    @JoinTable(name = "Tienda_Se_Ubica_Ciudad")
     private Set<Tienda> MisTiendas;
 
     // 1-N con Forja
@@ -25,6 +26,8 @@ public class Ciudad {
 
     public Ciudad(String Nombre) {
         this.NombreC = Nombre;
+        MisTiendas = new HashSet<>();
+        MisForjas = new HashSet<>();
     }
 
     public String getNombre() {

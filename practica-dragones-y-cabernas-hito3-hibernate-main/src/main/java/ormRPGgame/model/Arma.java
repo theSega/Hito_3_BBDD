@@ -43,6 +43,8 @@ public class Arma {
             Peso = 10;
         this.Peso = Peso;
         this.ClaseA = Clase;
+        forja = new HashSet<>();
+        Compra = new HashSet<>();
     }
 
     public long getDaño() {

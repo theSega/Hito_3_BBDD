@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,9 +25,10 @@ public class Escuadron {
     public Escuadron() {
     }
 
-    public Escuadron(long Id, Set<Personaje> miembros){
+    public Escuadron(long Id){
         this.IdE = Id;
-        this.PersonajesMiembros = miembros;
+        this.PersonajesMiembros =  new HashSet<>();
+        DragonesDerrotados = new HashSet<>();
     }
 
     public long getId(){

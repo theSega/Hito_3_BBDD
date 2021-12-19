@@ -29,6 +29,13 @@ public class Personaje_Recibe_Pocion implements Serializable {
     public Personaje_Recibe_Pocion() {
     }
 
+    public Personaje_Recibe_Pocion(Pocion pocion, String Druida, Date Fecha, Personaje Dueño) {
+        this.pocion = pocion;
+        this.Druida = Druida;
+        this.FechaP = Fecha;
+        this.DueñoP = Dueño;
+    }
+
     public Pocion getPocion() {
         return pocion;
     }

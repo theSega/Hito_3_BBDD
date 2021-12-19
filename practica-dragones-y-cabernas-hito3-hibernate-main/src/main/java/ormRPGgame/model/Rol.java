@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -38,9 +39,14 @@ public class Rol {
     public Rol(String clase) throws IllegalArgumentException {
         try {
             this.Clase = Clases.valueOf(clase);
+            personaje = new HashSet<>();
+            monstruo = new HashSet<>();
+            habilidades = new HashSet<>();
+            armas = new HashSet<>();
         } catch (IllegalArgumentException e) {
             System.out.println("Ese rol no es valido, solo valen: ");
-            System.out.println(" Guerrero\nTanque\nMago");
+            for (Clases rol : Clases.values())
+                System.out.println(rol);
         }
     }
 
@@ -52,6 +58,7 @@ public class Rol {
         try {
             return Clases.valueOf(clase);
         } catch (IllegalArgumentException ex) {
+            System.out.println("El rol " + clase + " no existe");
             return null;
         }
     }

@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,6 +27,8 @@ public class Tienda {
 
     public Tienda(String Nombre) {
         this.NombreT = Nombre;
+        DagasVendidas = new HashSet<>();
+        Ciudades = new HashSet<>();
     }
 
     public String getNombre() {

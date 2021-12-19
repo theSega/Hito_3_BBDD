@@ -11,14 +11,14 @@ import java.util.Set;
 @Table(name = "Monstruo")
 public class Monstruo implements Serializable {
 
-    private enum CodM {
+    private enum CodMon {
         Goblin, Troll, Espectro
     }
 
     @Id
     @Column(name = "CodM", nullable = false)
     @Enumerated(EnumType.STRING)
-    private CodM CodM;
+    private CodMon CodM;
 
     @Id
     @Column(name = "NombreM", nullable = false, length = 15, unique = true)
@@ -44,15 +44,17 @@ public class Monstruo implements Serializable {
 
     public Monstruo(String tipoMonstruo, String Nombre, long Vida, long Oro, Rol clase) throws IllegalArgumentException {
         try {
-            this.CodM = CodM.valueOf(tipoMonstruo);
+            this.CodM = CodMon.valueOf(tipoMonstruo);
+            this.NombreM = Nombre;
+            this.Vida = Vida;
+            this.Oro = Oro;
+            this.ClaseM = clase;
+            personajes = new HashSet<>();
         } catch (IllegalArgumentException e) {
             System.out.println("Ese monstruo no es valido, solo valen: ");
-            System.out.println("Goblin\nTroll\nEspectro");
+            for (CodMon monstruo : CodMon.values())
+                System.out.println(monstruo);
         }
-        this.NombreM = Nombre;
-        this.Vida = Vida;
-        this.Oro = Oro;
-        this.ClaseM = clase;
     }
 
     public String getCodigo() {

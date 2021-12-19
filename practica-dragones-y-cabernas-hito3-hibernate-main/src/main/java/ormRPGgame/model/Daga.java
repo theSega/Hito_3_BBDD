@@ -22,6 +22,8 @@ public class Daga {
 
     public Daga(String nombre) {
         this.TipoD = nombre;
+        personaje = new HashSet<>();
+        Tiendas = new HashSet<>();
     }
 
     public String getNombre() {

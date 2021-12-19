@@ -25,6 +25,7 @@ public class Jugador {
 
     public Jugador(String Nombre) {
         this.NombreJ = Nombre;
+        personajes = new HashSet<>();
     }
 
     public String getNombre() {

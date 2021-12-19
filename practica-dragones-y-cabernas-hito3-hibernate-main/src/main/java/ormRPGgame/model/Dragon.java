@@ -1,6 +1,7 @@
 package ormRPGgame.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,6 +34,8 @@ public class Dragon {
         this.NombreD = Nombre;
         this.Apariencia = Apariencia;
         this.Vida = Vida;
+        escuadrones = new HashSet<>();
+        DesbloqueaDragones = new HashSet<>();
     }
 
     public String getNombre() {

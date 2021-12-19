@@ -95,6 +95,10 @@ public class Personaje {
         this.TipoD = daga;
         this.IdJ = jugador;
         this.ClaseP = Clase;
+        escuadron = new HashSet<>();
+        MonstruosDerrotados = new HashSet<>();
+        MisArmas = new HashSet<>();
+        MisPociones = new HashSet<>();
     }
 
     public String getNombre() {

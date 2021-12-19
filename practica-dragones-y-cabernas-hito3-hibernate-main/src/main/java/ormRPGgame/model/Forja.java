@@ -30,6 +30,7 @@ public class Forja {
     public Forja(String NombreF, Ciudad NombreC) {
         this.NombreF = NombreF;
         this.NombreC = NombreC;
+        ArmasCreadas = new HashSet<>();
     }
 
     public String getNombre() {

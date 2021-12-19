@@ -63,10 +63,11 @@ public class Controller {
         Personaje mago = new Personaje(magician, clase, oro, nivel, daga, jugador);
         session.save(mago);
         session.getTransaction().commit();
+        jugador.getPersonajes().add(mago);
         return mago;
     }
 
-    public Jugador createJugador(String nombre) {
+    public Jugador createJugador(String nombre) throws SQLException {
         Jugador jugador = new Jugador(nombre);
         session.beginTransaction();
         session.save(jugador);
@@ -76,12 +77,17 @@ public class Controller {
 
     public Rol createRol(String clase) {
         Rol rol = new Rol();
-        rol = session.get(Rol.class, rol.getClase(clase));
-        if (rol == null) {
-            rol = new Rol(clase);
-            session.beginTransaction();
-            session.save(rol);
-            session.getTransaction().commit();
+        //Comprueba si la clase es valida
+        if (rol.getClase(clase) != null) {
+            //Comprueba si la clase ya existe en la base, si es asi la devuelve para su uso, si no, devuelve NULL
+            rol = session.get(Rol.class, rol.getClase(clase));
+            if (rol == null) {
+                //Si es NULL y por ende no existe en la BBDD, se crea la clase
+                rol = new Rol(clase);
+                session.beginTransaction();
+                session.save(rol);
+                session.getTransaction().commit();
+            }
         }
         return rol;
     }
