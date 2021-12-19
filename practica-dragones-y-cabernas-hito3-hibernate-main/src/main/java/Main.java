@@ -2,10 +2,9 @@ import ormRPGgame.Controller;
 import ormRPGgame.model.Jugador;
 import ormRPGgame.model.Personaje;
 import ormRPGgame.model.Daga;
-import ormRPGgame.model.Rol;
 
 import java.sql.SQLException;
-import java.util.Iterator;
+
 
 public class Main {
 
